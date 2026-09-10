@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hallam Forge — clubmakers and fitters, London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dune:#DCDAD0;
+    --paper:#EDEBE3;
+    --ink:#16211C;
+    --deep:#1B2E23;
+    --moss:#43654B;
+    --sand:#BBAA88;
+    --ball:#F2C230;
+    --rule:rgba(22,33,28,.16);
+    --sans:'Archivo',system-ui,sans-serif;
+    --serif:'Newsreader',Georgia,serif;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--dune);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.sans{font-family:var(--sans)}
+  a{color:inherit}
+  img,svg{display:block;max-width:100%}
+
+  .wrap{width:min(1120px,92vw);margin-inline:auto}
+
+  :focus-visible{outline:3px solid var(--ball);outline-offset:3px}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:flex;align-items:baseline;gap:clamp(16px,4vw,48px);
+    padding:22px 0 20px;
+    border-bottom:1px solid var(--rule);
+    flex-wrap:wrap;
+  }
+  .mark{
+    font-family:var(--sans);font-weight:700;font-size:19px;letter-spacing:-.02em;
+    text-decoration:none;line-height:1;
+  }
+  .mark small{display:block;font-weight:400;font-size:11px;color:var(--moss);letter-spacing:.04em;margin-top:4px}
+  .menu{display:flex;gap:22px;font-family:var(--sans);font-size:14.5px;font-weight:500;margin-right:auto}
+  .menu a{text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent}
+  .menu a:hover{border-color:var(--ink)}
+  .bag{
+    font-family:var(--sans);font-size:14px;font-weight:600;
+    background:none;border:1.5px solid var(--ink);border-radius:2px;
+    padding:7px 13px;cursor:pointer;color:inherit;
+  }
+  .bag:hover{background:var(--ink);color:var(--dune)}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--deep);color:var(--paper);padding:clamp(48px,7vw,84px) 0 clamp(52px,7vw,80px);margin-top:-1px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,6vw,72px);align-items:start}
+  .hero h1{
+    font-size:clamp(38px,5.6vw,66px);line-height:1.02;letter-spacing:-.035em;
+    font-weight:700;margin:0 0 22px;max-width:12ch;
+  }
+  .hero p{font-size:19px;line-height:1.65;color:#C9D3C9;max-width:44ch;margin:0 0 30px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    font-family:var(--sans);font-size:15px;font-weight:600;border-radius:2px;
+    padding:13px 22px;cursor:pointer;text-decoration:none;display:inline-block;border:1.5px solid transparent;
+  }
+  .btn-primary{background:var(--ball);color:var(--deep)}
+  .btn-primary:hover{background:#fff}
+  .btn-ghost{border-color:rgba(237,235,227,.45);color:var(--paper)}
+  .btn-ghost:hover{border-color:var(--paper)}
+
+  /* gapping chart */
+  .chart{background:rgba(0,0,0,.18);border:1px solid rgba(237,235,227,.14);border-radius:3px;padding:24px 24px 20px}
+  .chart-head{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ball);margin:0 0 4px}
+  .chart-note{font-size:14px;color:#9FB0A2;margin:0 0 22px;line-height:1.45}
+  .row{display:grid;grid-template-columns:34px 1fr 58px;align-items:center;gap:12px;margin-bottom:10px}
+  .row-club{font-family:var(--sans);font-size:13px;font-weight:600;color:#C9D3C9}
+  .track{height:14px;background:rgba(237,235,227,.09);border-radius:1px;overflow:hidden}
+  .track i{
+    display:block;height:100%;background:var(--moss);border-right:2px solid var(--ball);
+    transform:scaleX(0);transform-origin:left;
+    animation:grow .85s cubic-bezier(.16,.84,.3,1) both;animation-delay:var(--d);
+  }
+  .row-yds{
+    font-family:var(--sans);font-size:14px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums;
+    opacity:0;animation:fade .5s ease-out both;animation-delay:calc(var(--d) + .35s);
+  }
+  @keyframes grow{to{transform:scaleX(1)}}
+  @keyframes fade{to{opacity:1}}
+  @media (prefers-reduced-motion:reduce){
+    .track i{animation:none;transform:scaleX(1)}
+    .row-yds{animation:none;opacity:1}
+  }
+
+  /* ---------- sections ---------- */
+  .section{padding:clamp(56px,7vw,88px) 0}
+  .section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+  .section-head h2{font-size:clamp(27px,3.4vw,36px);letter-spacing:-.03em;margin:0;font-weight:700}
+  .section-head p{margin:6px 0 0;color:var(--moss);max-width:46ch}
+
+  /* ---------- clubs ---------- */
+  .clubs{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--rule);border:1px solid var(--rule)}
+  .club{background:var(--paper);padding:22px 20px 20px;display:flex;flex-direction:column}
+  .club figure{margin:0 0 18px;background:var(--dune);border-radius:2px;padding:18px 12px}
+  .club figure svg{margin-inline:auto;width:100%;height:auto;max-width:170px}
+  .club h3{font-size:18px;margin:0 0 3px;letter-spacing:-.02em;font-weight:600}
+  .club .kind{font-size:14px;color:var(--moss);margin:0 0 16px}
+  .spec{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13px;margin-bottom:18px}
+  .spec th{text-align:left;font-weight:500;color:var(--moss);padding:5px 0;border-bottom:1px solid var(--rule)}
+  .spec td{text-align:right;font-weight:600;padding:5px 0;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums}
+  .club footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .price{font-family:var(--sans);font-weight:700;font-size:19px;font-variant-numeric:tabular-nums}
+  .add{
+    font-family:var(--sans);font-size:13.5px;font-weight:600;
+    background:var(--ink);color:var(--paper);border:none;border-radius:2px;
+    padding:10px 15px;cursor:pointer;
+  }
+  .add:hover{background:var(--moss)}
+  .add.done{background:var(--ball);color:var(--deep)}
+
+  /* ---------- fitting ---------- */
+  .fitting{background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);counter-reset:step}
+  .step{counter-increment:step}
+  .step::before{
+    content:counter(step);
+    font-family:var(--sans);font-weight:700;font-size:15px;
+    display:grid;place-items:center;width:32px;height:32px;
+    background:var(--deep);color:var(--ball);border-radius:50%;margin-bottom:16px;
+  }
+  .step h3{margin:0 0 8px;font-size:20px;letter-spacing:-.02em;font-weight:600}
+  .step p{margin:0;color:#3E4E45}
+
+  /* ---------- footer ---------- */
+  .foot{background:var(--deep);color:#B9C6BA;padding:52px 0 40px;font-size:15px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+  .foot h4{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--paper);margin:0 0 12px}
+  .foot ul{list-style:none;margin:0;padding:0}
+  .foot li{margin-bottom:7px}
+  .foot a{text-decoration:none}
+  .foot a:hover{color:var(--ball)}
+  .foot-mark{font-family:var(--sans);font-weight:700;color:var(--paper);font-size:18px;margin:0 0 10px}
+  .foot-base{border-top:1px solid rgba(237,235,227,.15);margin-top:36px;padding-top:18px;font-size:13.5px;color:#8A9A8C}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .clubs{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:1fr;gap:30px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:560px){
+    .clubs{grid-template-columns:1fr}
+    .menu{order:3;width:100%;margin-right:0;gap:16px;flex-wrap:wrap}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="masthead">
+    <a class="mark" href="#top">Hallam Forge<small>Clubmakers, London E8 — since 1974</small></a>
+    <nav class="menu" aria-label="Clubs">
+      <a href="#clubs">Drivers</a>
+      <a href="#clubs">Irons</a>
+      <a href="#clubs">Wedges</a>
+      <a href="#clubs">Putters</a>
+      <a href="#fitting">Fitting</a>
+    </nav>
+    <button class="bag" id="bag" aria-live="polite">Bag (0)</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Clubs built to your numbers.</h1>
+        <p>We measure what you actually carry, then forge a set that fills the gaps between those distances. No two sets leave the workshop the same.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#fitting">Book a fitting</a>
+          <a class="btn btn-ghost" href="#clubs">See the clubs</a>
+        </div>
+      </div>
+
+      <div class="chart">
+        <p class="chart-head">Carry distances after fitting</p>
+        <p class="chart-note">A Series 7 set built for a 90&nbsp;mph swing. Even gaps, no dead yardages.</p>
+
+        <div class="row"><span class="row-club">Dr</span><span class="track"><i style="width:100%;--d:.05s"></i></span><span class="row-yds" style="--d:.05s">258 yd</span></div>
+        <div class="row"><span class="row-club">3w</span><span class="track"><i style="width:90%;--d:.12s"></i></span><span class="row-yds" style="--d:.12s">232 yd</span></div>
+        <div class="row"><span class="row-club">5i</span><span class="track"><i style="width:72%;--d:.19s"></i></span><span class="row-yds" style="--d:.19s">187 yd</span></div>
+        <div class="row"><span class="row-club">7i</span><span class="track"><i style="width:64%;--d:.26s"></i></span><span class="row-yds" style="--d:.26s">165 yd</span></div>
+        <div class="row"><span class="row-club">9i</span><span class="track"><i style="width:55%;--d:.33s"></i></span><span class="row-yds" style="--d:.33s">142 yd</span></div>
+        <div class="row"><span class="row-club">PW</span><span class="track"><i style="width:49%;--d:.40s"></i></span><span class="row-yds" style="--d:.40s">128 yd</span></div>
+        <div class="row"><span class="row-club">56°</span><span class="track"><i style="width:37%;--d:.47s"></i></span><span class="row-yds" style="--d:.47s">96 yd</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="clubs">
+    <div class="section-head">
+      <div>
+        <h2>What we make</h2>
+        <p>Four builds, each finished to your lie angle and shaft length in the Hackney workshop.</p>
+      </div>
+      <a class="btn btn-ghost" style="border-color:var(--rule);color:var(--ink)" href="#fitting">Full spec sheets</a>
+    </div>
+
+    <div class="clubs">
+
+      <article class="club">
+        <figure>
+          <svg viewBox="0 0 170 120" role="img" aria-label="Driver head, side profile">
+            <path d="M26 84 L14 26" stroke="#43654B" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <path d="M28 76c-4-26 16-46 46-48 34-2 62 14 66 34 4 20-18 34-52 36-32 2-56-4-60-22z" fill="#1B2E23"/>
+            <path d="M34 62c14 8 34 12 56 12" stroke="#BBAA88" stroke-width="2.5" fill="none" opacity=".7"/>
+          </svg>
+        </figure>
+        <h3>H1 Driver</h3>
+        <p class="kind">Titanium, 460cc</p>
+        <table class="spec">
+          <tr><th scope="row">Loft</th><td>9.5° / 10.5°</td></tr>
+          <tr><th scope="row">Shaft</th><td>45.5 in</td></tr>
+          <tr><th scope="row">Flex</th><td>R / S / X</td></tr>
+        </table>
+        <footer>
+          <span class="price">£429</span>
+          <button class="add" data-name="H1 Driver">Add to bag</button>
+        </footer>
+      </article>
+
+      <article class="club">
+        <figure>
+          <svg viewBox="0 0 170 120" role="img" aria-label="Forged iron head">
+            <path d="M48 40 L38 14" stroke="#43654B" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <path d="M42 92l8-46c2-10 10-14 22-14h62c6 0 8 4 8 10v44c0 5-3 6-8 6z" fill="#1B2E23"/>
+            <g stroke="#BBAA88" stroke-width="2.2" opacity=".75">
+              <path d="M54 48h72M52 58h74M50 68h76M48 78h78"/>
+            </g>
+          </svg>
+        </figure>
+        <h3>Series 7 Irons</h3>
+        <p class="kind">Forged 1025 carbon, 4–PW</p>
+        <table class="spec">
+          <tr><th scope="row">Lie</th><td>Fitted ±4°</td></tr>
+          <tr><th scope="row">Offset</th><td>3.1 mm</td></tr>
+          <tr><th scope="row">Set</th><td>7 clubs</td></tr>
+        </table>
+        <footer>
+          <span class="price">£1,090</span>
+          <button class="add" data-name="Series 7 Irons">Add to bag</button>
+        </footer>
+      </article>
+
+      <article class="club">
+        <figure>
+          <svg viewBox="0 0 170 120" role="img" aria-label="Sand wedge head">
+            <path d="M56 38 L44 12" stroke="#43654B" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <path d="M46 94l10-56c2-8 9-12 20-12h56c7 0 10 5 10 12v50c0 5-3 6-9 6z" fill="#1B2E23"/>
+            <g stroke="#BBAA88" stroke-width="2.2" opacity=".75">
+              <path d="M60 44h72M58 54h74M56 64h76M54 74h78M52 84h80"/>
+            </g>
+          </svg>
+        </figure>
+        <h3>Turf Wedge</h3>
+        <p class="kind">Milled face, raw finish</p>
+        <table class="spec">
+          <tr><th scope="row">Loft</th><td>50° / 54° / 58°</td></tr>
+          <tr><th scope="row">Bounce</th><td>8° / 12°</td></tr>
+          <tr><th scope="row">Grind</th><td>Wide / Low</td></tr>
+        </table>
+        <footer>
+          <span class="price">£149</span>
+          <button class="add" data-name="Turf Wedge">Add to bag</button>
+        </footer>
+      </article>
+
+      <article class="club">
+        <figure>
+          <svg viewBox="0 0 170 120" role="img" aria-label="Blade putter head">
+            <path d="M56 62 L48 16" stroke="#43654B" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <path d="M50 60h96c4 0 6 2 6 6v14c0 4-2 6-6 6H50c-4 0-6-2-6-6V66c0-4 2-6 6-6z" fill="#1B2E23"/>
+            <path d="M44 88h108v8H44z" fill="#43654B"/>
+            <path d="M98 60v26" stroke="#F2C230" stroke-width="3"/>
+          </svg>
+        </figure>
+        <h3>Meridian Putter</h3>
+        <p class="kind">Milled 303 stainless</p>
+        <table class="spec">
+          <tr><th scope="row">Length</th><td>33–35 in</td></tr>
+          <tr><th scope="row">Head</th><td>350 g</td></tr>
+          <tr><th scope="row">Loft</th><td>3°</td></tr>
+        </table>
+        <footer>
+          <span class="price">£259</span>
+          <button class="add" data-name="Meridian Putter">Add to bag</button>
+        </footer>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section fitting" id="fitting">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>How a fitting works</h2>
+          <p>Ninety minutes on the monitor, then four to five weeks in the workshop.</p>
+        </div>
+        <a class="btn btn-primary" href="#book">Book a slot — £75</a>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <h3>Hit your own clubs</h3>
+          <p>We record carry, spin and dispersion for every club already in your bag, so we can see exactly where the yardage gaps sit.</p>
+        </div>
+        <div class="step">
+          <h3>Build the set</h3>
+          <p>Heads are forged and ground to the lie, loft and length your swing asked for. You choose shafts and grips from stock on the bench.</p>
+        </div>
+        <div class="step">
+          <h3>Come back in a season</h3>
+          <p>Swings change. Bring the set back after a summer and we'll re-check the lie angles and regrip anything worn, at no charge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" id="book">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-mark">Hallam Forge</p>
+        <p style="margin:0 0 6px">Unit 7, Ashwin Street<br>London E8 3DL</p>
+        <p style="margin:0"><a href="tel:+442075550117">020 7555 0117</a></p>
+      </div>
+      <div>
+        <h4>Workshop hours</h4>
+        <ul>
+          <li>Tue–Fri, 9am–6pm</li>
+          <li>Saturday, 8am–4pm</li>
+          <li>Sunday and Monday, closed</li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul>
+          <li><a href="#clubs">Shaft and grip stock</a></li>
+          <li><a href="#fitting">Repairs and regripping</a></li>
+          <li><a href="#book">Delivery and returns</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-base">Every set is made to order. Bespoke builds can't be returned once ground, so we'll always fit you first.</p>
+  </div>
+</footer>
+
+<script>
+  var count = 0;
+  var bag = document.getElementById('bag');
+
+  document.querySelectorAll('.add').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      count++;
+      bag.textContent = 'Bag (' + count + ')';
+      btn.textContent = 'Added';
+      btn.classList.add('done');
+      setTimeout(function () {
+        btn.textContent = 'Add to bag';
+        btn.classList.remove('done');
+      }, 1400);
+    });
+  });
+</script>
+
+</body>
+</html>
